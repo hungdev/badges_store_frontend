@@ -16,7 +16,7 @@ const Layout = ({ children, title = 'Badge Store' }) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <div className='flex flex-row min-h-screen'>
+      <div className='flex flex-row h-screen'>
         <SideBar />
         <main className='w-full flex'>
           {children}

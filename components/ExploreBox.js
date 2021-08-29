@@ -5,12 +5,13 @@ import chatIcon from '../public/images/chat.png'
 import searchIcon from '../public/images/search.png'
 import { Input, Button } from 'antd';
 import CategoryScroll from '@/components/CategoryScroll'
+import DiscountExploreBox from '@/components/DiscountExploreBox'
 
 const listCategory = ['Popular', 'All badges', 'Holidays', 'Sale off', 'Trust', 'Free', 'Popular', 'All badges', 'Holidays', 'Sale off', 'Trust', 'Free', 'Popular', 'All badges', 'Holidays', 'Sale off', 'Trust', 'Free']
 
 export default function ExploreBox() {
   return (
-    <div className='w-500 sm:w-400 md:w-400 lg:w-500 border pr-color pt-6 pl-6'>
+    <div className='flex flex-col w-500 sm:w-400 md:w-400 lg:w-500 border pr-color pt-6 pl-6'>
       <div className='flex flex-row'>
         <div className='text-xl mr-auto'>Explore</div>
         <div className='flex mr-6 self-center'>
@@ -25,6 +26,7 @@ export default function ExploreBox() {
       </div>
 
       <CategoryScroll list={listCategory} />
+      <DiscountExploreBox />
     </div>
   )
 }

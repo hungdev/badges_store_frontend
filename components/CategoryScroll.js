@@ -6,7 +6,7 @@ export default function CategoryScroll({ list }) {
 
   return (
     <div className='overflow-hidden mt-8'>
-      <div className='flex flex-row overflow-x-auto pb-4'>
+      <div className='flex flex-row overflow-x-auto pb-4 mb-4'>
         {list?.map((e, i) => <div key={i} onClick={onClickBtn(i)}
           className={`
           whitespace-nowrap mr-2 border rounded px-2 py-1 cursor-pointer 
