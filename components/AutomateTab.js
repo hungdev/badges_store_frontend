@@ -16,7 +16,18 @@ export default function AutomateTab() {
       ))}
 
       <div className='mt-10 text-sm text-center text-pr'>Do you want custom automate?</div>
-      <div className='text-sm text-redLight text-center font-medium mb-10 cursor-pointer'>Contact Us</div>
+      <div className='text-sm text-redLight text-center font-medium cursor-pointer mb-40'>Contact Us</div>
+
+      <div className='flex flex-col w-330 absolute bottom-0 right-0'>
+        <div className='bg-white flex justify-between p-6'>
+          <div>112,198 products selected</div>
+          <div className='text-redLight cursor-pointer'>See</div>
+        </div>
+        <div>
+          <div className='p-3 m-auto bg-pr inline-block text-white cursor-pointer w-2/4 text-center'>Schedule</div>
+          <div className='p-3 m-auto bg-redLight inline-block text-white cursor-pointer w-2/4 text-center'>Apply Now</div>
+        </div>
+      </div>
     </div>
   )
 }
