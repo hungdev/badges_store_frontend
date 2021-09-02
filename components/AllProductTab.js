@@ -25,8 +25,8 @@ export default function AutomateTab() {
         <div className='flex check-all'> <Checkbox onChange={onChange}>All</Checkbox></div>
       </div>
       <div className='overflow-auto mt-4'>
-        {data?.map(e => (
-          <div className='flex flex-row rounded-md border mt-2 p-4'>
+        {data?.map((e, i) => (
+          <div key={i} className='flex flex-row rounded-md border mt-2 p-4'>
             <img src={e.photo} className='h-12 w-12 rounded-full mr-4' />
             <div>
               <div className='text-lg text-pr'>{e.title}</div>
