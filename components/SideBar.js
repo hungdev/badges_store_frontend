@@ -20,7 +20,7 @@ export default function SideBar() {
         </Link>
       </div>
       <div className='mt-8 mb-auto cursor-pointer'>
-        <Link href='/badges' passHref>
+        <Link href='/my-badges' passHref>
           <a><Image src={myBadgeIcon} alt="Badges" width={30} height={30} layout="fixed" /></a>
         </Link>
       </div>

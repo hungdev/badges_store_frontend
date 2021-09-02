@@ -15,6 +15,9 @@ module.exports = {
         '300': '300px',
         '350': '350px',
       },
+      maxHeight: {
+        '300': '300px'
+      },
       textColor: {
         'pr': '#1A1E47',
         'second': '#A5A7C3',
@@ -27,7 +30,9 @@ module.exports = {
         'second': '#A5A7C3',
         'alignBg': '#E3E5F4',
         'alginDot': '#A5A7C3',
-        'input': '#EDEEF6'
+        'input': '#EDEEF6',
+        'redLight': '#EB7D6F',
+        'delete': '#EB3428',
       })
 
     },
