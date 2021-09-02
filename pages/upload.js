@@ -10,7 +10,7 @@ export default function UploadPage() {
   return (
     <Layout>
       <UploadBox />
-      <ProductImageBox />
+      <ProductImageBox hideSelectColor />
       <AutomateBox />
     </Layout>
   )
