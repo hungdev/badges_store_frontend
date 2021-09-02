@@ -61,3 +61,11 @@
     order: -1;
   }
 }
+
+.product-box {
+  background-image:url('../public/images/background.png');
+  background-attachment:fixed;
+  background-repeat: repeat;
+  background-size: contain;
+  background-color: #EDEEF7;
+}
