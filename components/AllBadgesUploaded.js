@@ -14,6 +14,11 @@ export default function AllBadgesUploaded({ imagesUploaded }) {
     <div className='flex flex-col overflow-auto pt-6'>
       <div className='mb-2 font-medium'>ALL BADGES UPLOADED</div>
       <div className='flex flex-wrap '>
+        {!imagesUploaded?.length &&
+          <div className='flex justify-center flex-col items-center my-6 w-full'>
+            <div className='text-second'>NO BADGES</div>
+            <div className='text-second'>Your badges uploaded used will show in here</div>
+          </div>}
         {imagesUploaded?.map((e, i) => {
           return (
             <div key={i} className='rounded border mr-5 mb-5'>

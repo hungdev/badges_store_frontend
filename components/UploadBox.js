@@ -6,8 +6,7 @@ import searchIcon from '../public/images/search.png'
 import { Input, Upload } from 'antd';
 import CategoryScroll from '@/components/CategoryScroll'
 import AllBadgesUploaded from '@/components/AllBadgesUploaded'
-
-const listCategory = ['Popular', 'All badges', 'Holidays', 'Sale off', 'Trust', 'Free', 'Popular', 'All badges', 'Holidays', 'Sale off', 'Trust', 'Free', 'Popular', 'All badges', 'Holidays', 'Sale off', 'Trust', 'Free']
+import { uniqBy } from '@/utils/index'
 
 const { Dragger } = Upload;
 
@@ -16,17 +15,19 @@ export default function UploadBox() {
   const uploadProps = {
     name: 'file',
     multiple: true,
-    // action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
     showUploadList: false,
     beforeUpload: () => false,
     onChange(info) {
       const { file, fileList } = info;
-      console.log('status', info)
+      console.log('fileList', fileList)
+      setFiles(prev => [
+        ...prev,
+        ...fileList?.map(imf => imf?.originFileObj)])
     },
     onDrop(e) {
       console.log('Dropped files', e.dataTransfer.files);
-      console.log(Object.values(e.dataTransfer.files))
-      setFiles(prev => [...prev, ...Object.values(e.dataTransfer.files)?.map(imf => URL.createObjectURL(imf))])
+      // console.log(Object.values(e.dataTransfer.files))
+      // setFiles(prev => [...prev, ...Object.values(e.dataTransfer.files)?.map(imf => URL.createObjectURL(imf))])
     },
   };
 
@@ -49,7 +50,7 @@ export default function UploadBox() {
         </Dragger>
       </div>
 
-      <AllBadgesUploaded imagesUploaded={files} />
+      <AllBadgesUploaded imagesUploaded={uniqBy(files, 'uid')?.map(e => URL.createObjectURL(e))} />
     </div >
   )
 }

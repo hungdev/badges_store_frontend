@@ -18,3 +18,30 @@ a {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "SVNCircular";
+  src: url("../public/fonts/SVN-Circular-Book.otf");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "SVNCircularMedium";
+  src: url("../public/fonts/SVN-Circular-Medium.otf");
+  font-style: medium;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SVNCircularBold";
+  src: url("../public/fonts/SVN-Circular-Bold.otf");
+}
+
+@layer base {
+  div {
+    color: rgba(0, 0, 0, .8);
+    font-family: SVNCircular;
+    word-spacing: -.4ch;
+  }
+}
