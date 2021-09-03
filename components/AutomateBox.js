@@ -12,7 +12,7 @@ export default function AutomateBox() {
   }
 
   return (
-    <div className='flex flex-col w-330 sm:w-400 md:w-330 lg:w-330 border pr-color pt-6 px-6 automate-box'>
+    <div className='flex flex-col w-300 sm:w-300 md:w-300 lg:w-300 border pr-color pt-6 px-6 automate-box'>
       <Tabs defaultActiveKey="1" onChange={callback}>
         <TabPane tab="AUTOMATE" key="1" className='flex'>
           <AutomateTab />

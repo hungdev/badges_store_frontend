@@ -11,7 +11,7 @@ const listCategory = ['Popular', 'All badges', 'Holidays', 'Sale off', 'Trust', 
 
 export default function ExploreBox() {
   return (
-    <div className='flex flex-col w-500 sm:w-400 md:w-400 lg:w-500 border pr-color pt-6 pl-6'>
+    <div className='flex flex-col w-400 sm:w-400 md:w-400 lg:w-400 xl:w-400 border pr-color pt-6 pl-6'>
       <div className='flex flex-row'>
         <div className='text-xl mr-auto'>Explore</div>
         <div className='flex mr-6 self-center'>

@@ -21,8 +21,11 @@ export default function AllBadgesUploaded({ imagesUploaded }) {
           </div>}
         {imagesUploaded?.map((e, i) => {
           return (
-            <div key={i} className='rounded border mr-5 mb-5'>
-              <img src={e} alt="Explore" width={imgSize} height={imgSize} style={{ height: imgSize, width: imgSize }} layout="fixed" />
+            // <div key={i} className='rounded border mr-5 mb-5'>
+            //   <img src={e} alt="Explore" width={imgSize} height={imgSize} style={{ height: imgSize, width: imgSize }} layout="fixed" />
+            // </div>
+            <div key={i} className='rounded border mr-5 mb-5 width-explore-badge'>
+              <img src={e} className='h-full w-full' alt='explore-badge' />
             </div>
           )
         }
@@ -33,8 +36,8 @@ export default function AllBadgesUploaded({ imagesUploaded }) {
       <div className='text-xs text-second mb-4'>Only for Pro & Enterprise plans</div>
       <div className='flex flex-wrap '>
         {discountList?.map((e, i) =>
-          <div key={i} className='rounded border mr-5 mb-5'>
-            <Image src={e.img} alt="Explore" width={imgSize} height={imgSize} layout="fixed" />
+          <div key={i} className='rounded border mr-5 mb-5 width-explore-badge'>
+            <img src={e.img?.default?.src} className='' alt='explore-badge' />
           </div>
         )}
       </div>

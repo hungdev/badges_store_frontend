@@ -32,7 +32,7 @@ export default function UploadBox() {
   };
 
   return (
-    <div className='flex flex-col w-500 sm:w-400 md:w-400 lg:w-500 border pr-color pt-6 pl-6'>
+    <div className='flex flex-col w-400 sm:w-400 md:w-400 lg:w-400 border pr-color pt-6 pl-6'>
       <div className='flex flex-row'>
         <div className='text-xl mr-auto'>Upload</div>
       </div>

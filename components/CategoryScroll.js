@@ -5,8 +5,8 @@ export default function CategoryScroll({ list }) {
   const onClickBtn = (i) => () => setBtn(i)
 
   return (
-    <div className='overflow-hidden mt-8'>
-      <div className='flex flex-row overflow-x-auto pb-4 mb-4'>
+    <div className='overflow-hidden mt-8 min-h-45'>
+      <div className='flex flex-row overflow-x-auto pb-4 mb-4 min-h-45'>
         {list?.map((e, i) => <div key={i} onClick={onClickBtn(i)}
           className={`
           whitespace-nowrap mr-2 border rounded px-2 py-1 cursor-pointer 

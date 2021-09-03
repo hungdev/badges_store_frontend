@@ -25,10 +25,13 @@ export default function DiscountExploreBox() {
   const imgSize = 500 / 3 - 31
   return (
     <div className='flex flex-row flex-wrap overflow-auto pt-6'>
-      {discountList?.map((e, i) =>
-        <div key={i} className='rounded border mr-5 mb-5'>
-          <Image src={e.img} alt="Explore" width={imgSize} height={imgSize} layout="fixed" />
-        </div>
+      {discountList?.map((e, i) => {
+        return (
+          <div key={i} className='rounded border mr-5 mb-5 width-explore-badge'>
+            <img src={e.img?.default?.src} className='' alt='explore-badge' />
+          </div>
+        )
+      }
       )}
     </div>
   )

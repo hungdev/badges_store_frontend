@@ -5,7 +5,6 @@ import p2 from '/public/discounts/discount_01_yellow_40.png'
 
 const data = Array(10).fill('').map((e, i) => ({ id: i + 1, photo: p2.src, title: 'On Sale & Discount', date: '24 June 2021 to When i remove', description: 'Apply badge to products' }))
 export default function AllBadgesUploaded({ imagesUploaded }) {
-  const imgSize = 500 / 3 - 31
   return (
     <div className='flex flex-shrink-0 flex-col w-400 sm:w-300 md:w-400 lg:w-400 border pr-color pt-6 pl-6'>
       <div className='flex flex-row'>

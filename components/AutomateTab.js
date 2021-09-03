@@ -1,7 +1,7 @@
 import React from 'react'
 import p2 from '/public/discounts/discount_01_yellow_40.png'
 
-const data = Array(10).fill('').map((e, i) => ({ id: i + 1, photo: p2.src, title: 'On Sale & Discount', description: 'Apply badge to products with discount' }))
+const data = Array(10).fill('').map((e, i) => ({ id: i + 1, photo: p2.src, title: 'Out of Stock', description: 'Apply badge to products with discount' }))
 export default function AutomateTab() {
   return (
     <div className='overflow-auto flex flex-col'>
@@ -18,7 +18,7 @@ export default function AutomateTab() {
       <div className='mt-10 text-sm text-center text-pr'>Do you want custom automate?</div>
       <div className='text-sm text-redLight text-center font-medium cursor-pointer mb-40'>Contact Us</div>
 
-      <div className='flex flex-col w-330 absolute bottom-0 right-0'>
+      <div className='flex flex-col w-300 absolute bottom-0 right-0 border'>
         <div className='bg-white flex justify-between p-6'>
           <div>112,198 products selected</div>
           <div className='text-redLight cursor-pointer'>See</div>
