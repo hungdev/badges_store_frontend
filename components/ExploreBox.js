@@ -13,7 +13,7 @@ export default function ExploreBox() {
   return (
     <div className='flex flex-col w-400 sm:w-400 md:w-400 lg:w-400 xl:w-400 border pr-color pt-6 pl-6'>
       <div className='flex flex-row'>
-        <div className='text-xl mr-auto'>Explore</div>
+        <div className='text-xl mr-auto font-medium'>Explore</div>
         <div className='flex mr-6 self-center'>
           <div className='mr-2'><Image src={chatIcon} alt="Explore" width={13} height={13} layout="fixed" /></div>
           <div className='text-red-400'>Request badges</div>
