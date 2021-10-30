@@ -109,3 +109,81 @@
   background-color: #EFF0FB;
   transform: translateY(10px);
 }
+
+  .menu-sidebar {
+    width: 130px;
+    height: 200px;
+    border-radius: 8px;
+    padding: 22px;
+
+    .store-name {
+      // margin: 24px 24px 2px;
+    }
+    .free-plan {
+      font-size: 13px;
+      color: #717597;
+      font-weight: 400;
+    }
+    hr {
+      margin: 24px 0px;
+    }
+    .upgrade-plan {
+      font-size: 14px;
+      font-weight: 400;
+      cursor: pointer;
+    }
+    .logout {
+      font-size: 14px;
+      color: #EB7D6F;
+      margin-top: 24px;
+      cursor: pointer;
+    }
+  }
+
+  .modal-plan-package {
+    border-radius: 12px;
+    overflow: hidden;
+
+    .ant-modal-content {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .ant-modal-close-x {
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+    }
+
+    .title {
+      font-size: 16px;
+    }
+
+    .currency {
+      font-size: 16px;
+      color: #EB7D6F;
+      transform: translate(-2px, 16px);
+    }
+    .money {
+      font-size: 48px;
+      font-family: SVNCircular;
+      font-style: normal;
+      font-weight: 400;
+      letter-spacing: -5px;
+    }
+    .month {
+      font-size: 14px;
+      color: #717597;
+      transform: translate(5px, 38px);
+    }
+  }
+
+  .modal-notification {
+    border-radius: 12px;
+    overflow: hidden;
+
+    .ant-modal-content {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+  }

@@ -38,7 +38,10 @@ module.exports = {
         'input': '#EDEEF6',
         'redLight': '#EB7D6F',
         'delete': '#EB3428',
-      })
+      }),
+      fontSize: {
+        '10': '10px'
+      }
 
     },
   },

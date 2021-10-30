@@ -35,7 +35,7 @@ export default function ProductImageBox({ isPhoto = true, hideSelectColor }) {
           </div>
         </div>
         <div className='flex flex-row items-end mt-4'>
-          <div >
+          <div>
             <div>Color</div>
             <PhotoColorSelector />
           </div>
