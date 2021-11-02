@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import chatIcon from '../public/images/chat.png'
@@ -7,11 +7,22 @@ import { Input, Button } from 'antd';
 import CategoryScroll from '@/components/CategoryScroll'
 import DiscountExploreBox from '@/components/DiscountExploreBox'
 import NotificationBox from '@/components/NotificationBox'
+import { getCategories } from '@/services/Api'
 
-const listCategory = ['Popular', 'All badges', 'Holidays', 'Sale off', 'Trust', 'Free', 'Popular', 'All badges', 'Holidays', 'Sale off', 'Trust', 'Free', 'Popular', 'All badges', 'Holidays', 'Sale off', 'Trust', 'Free']
 
 export default function ExploreBox() {
+  const [categories, setCategories] = useState([]);
   const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const getCategoryList = async () => {
+      try {
+        const result = await getCategories()
+        setCategories(result?.data?.data)
+      } catch (error) { }
+    }
+    getCategoryList()
+  }, [])
 
   const onToggleNoti = () => setVisible(prev => !prev)
 
@@ -30,7 +41,7 @@ export default function ExploreBox() {
         <Input bordered={false} placeholder='Discount, Holiday, Trust' className='mr-6' />
       </div>
 
-      <CategoryScroll list={listCategory} />
+      <CategoryScroll list={categories} />
       <DiscountExploreBox />
       <NotificationBox visible={visible} onCancel={onToggleNoti} />
     </div>

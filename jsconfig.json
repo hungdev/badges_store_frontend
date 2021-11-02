@@ -17,6 +17,9 @@
       "@/utils/*": [
         "utils/*"
       ],
+      "@/services/*": [
+        "services/*"
+      ],
     }
   }
 }
