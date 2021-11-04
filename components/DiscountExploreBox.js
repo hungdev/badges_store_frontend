@@ -14,6 +14,7 @@ export default function DiscountExploreBox() {
     dispatch(getBadges())
   }, [dispatch])
 
+
   const onSelectBadge = (e) => () => dispatch(setBadgeSelected(e))
 
   return (
