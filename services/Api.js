@@ -1,7 +1,7 @@
 import axios from 'axios'
-
+import { baseURL } from './config'
 const instance = axios.create({
-    baseURL: 'http://139.59.104.227:3000/api/v1',
+    baseURL: `${baseURL}/api/v1`,
     timeout: 60000,
     headers: {
         Accept: 'application/json',
@@ -29,4 +29,4 @@ axios.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-export const getCategories = () => instance.get('badges-categories')
+export default instance;

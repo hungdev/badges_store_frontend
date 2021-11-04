@@ -1,34 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
+import { getBadges, setBadgeSelected } from '@/store/badge'
+import { useDispatch, useSelector } from 'react-redux';
+import { getUrlBadge } from '@/utils/photo-utils'
+import checkboxBlack from '../public/images/checkbox_black.png'
 
-const discountList = [
-  { id: 1, img: require('../public/discounts/discount_01_black_5.svg') },
-  { id: 2, img: require('../public/discounts/discount_01_yellow_15.svg') },
-  { id: 3, img: require('../public/discounts/discount_01_black_15.svg') },
-  { id: 4, img: require('../public/discounts/discount_01_red_35.svg') },
-  { id: 5, img: require('../public/discounts/discount_01_black_10.svg') },
-  { id: 6, img: require('../public/discounts/freeshipping_04_blue.svg') },
-  { id: 7, img: require('../public/discounts/freeshipping_04_red.svg') },
-  { id: 8, img: require('../public/discounts/freeshipping_04_white.svg') },
-  { id: 1, img: require('../public/discounts/discount_01_black_5.svg') },
-  { id: 2, img: require('../public/discounts/discount_01_yellow_15.svg') },
-  { id: 3, img: require('../public/discounts/discount_01_black_15.svg') },
-  { id: 4, img: require('../public/discounts/discount_01_red_35.svg') },
-  { id: 5, img: require('../public/discounts/discount_01_black_10.svg') },
-  { id: 6, img: require('../public/discounts/freeshipping_04_blue.svg') },
-  { id: 7, img: require('../public/discounts/freeshipping_04_red.svg') },
-  { id: 8, img: require('../public/discounts/freeshipping_04_white.svg') },
-]
-
-const mockData = Array(15).fill('').map((e, i) => ({ id: i, img: require('../public/discounts/discount_01_black_5.svg') }))
 export default function DiscountExploreBox() {
-  const imgSize = 500 / 3 - 31
+  const dispatch = useDispatch()
+  const badges = useSelector(store => store.badge.badges);
+  const badgeSelected = useSelector(store => store.badge.badgeSelected);
+
+  useEffect(() => {
+    dispatch(getBadges())
+  }, [dispatch])
+
+  const onSelectBadge = (e) => () => dispatch(setBadgeSelected(e))
+
   return (
     <div className='flex flex-row flex-wrap overflow-auto pt-6'>
-      {discountList?.map((e, i) => {
+      {badges?.map((e, i) => {
+        const isSelected = badgeSelected?.id === e?.id
         return (
-          <div key={i} className='rounded border mr-5 mb-5 width-explore-badge'>
-            <img src={e.img?.default?.src} className='' alt='explore-badge' />
+          <div key={i} className={`rounded-lg border mr-5 mb-5 width-explore-badge relative ${isSelected && 'border-black'} `} onClick={onSelectBadge(e)}>
+            {isSelected &&
+              <div className='absolute top-1 right-1 z-10'>
+                <Image src={checkboxBlack} alt="Explore" width={16} height={16} layout="fixed" />
+              </div>}
+            <img src={getUrlBadge(e?.icon)} className='' alt='explore-badge' />
           </div>
         )
       }

@@ -1,13 +1,14 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from "redux-thunk";
 import { createWrapper, HYDRATE } from 'next-redux-wrapper';
-import cartReducer from './reducers/cart';
-import userReducer from './reducers/user';
+import promiseMiddleware from 'redux-promise-middleware';
+import categoryReducer from './category';
+import badgeReducer from './badge';
 
 //COMBINING ALL REDUCERS
 const combinedReducer = combineReducers({
-  cart: cartReducer,
-  user: userReducer
+  category: categoryReducer,
+  badge: badgeReducer
 });
 
 // BINDING MIDDLEWARE
@@ -22,7 +23,7 @@ const bindMiddleware = (middleware) => {
 const makeStore = ({ isServer }) => {
   if (isServer) {
     //If it's on server side, create a store
-    return createStore(combinedReducer, bindMiddleware([thunkMiddleware]));
+    return createStore(combinedReducer, bindMiddleware([thunkMiddleware, promiseMiddleware]));
   } else {
     //If it's on client side, create a store which will persist
     const { persistStore, persistReducer } = require("redux-persist");
@@ -38,7 +39,7 @@ const makeStore = ({ isServer }) => {
 
     const store = createStore(
       persistedReducer,
-      bindMiddleware([thunkMiddleware])
+      bindMiddleware([thunkMiddleware, promiseMiddleware])
     ); // Creating the store again
 
     store.__persistor = persistStore(store); // This creates a persistor object & push that persisted object to .__persistor, so that we can avail the persistability feature
@@ -48,4 +49,4 @@ const makeStore = ({ isServer }) => {
 };
 
 // export an assembled wrapper
-export const wrapper = createWrapper(makeStore, {debug: true});
+export const wrapper = createWrapper(makeStore, { debug: true });

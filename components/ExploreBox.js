@@ -1,28 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useDispatch, useSelector } from 'react-redux';
 import chatIcon from '../public/images/chat.png'
 import searchIcon from '../public/images/search.png'
 import { Input, Button } from 'antd';
 import CategoryScroll from '@/components/CategoryScroll'
 import DiscountExploreBox from '@/components/DiscountExploreBox'
 import NotificationBox from '@/components/NotificationBox'
-import { getCategories } from '@/services/Api'
+import { getCategories } from '@/store/category'
 
 
 export default function ExploreBox() {
-  const [categories, setCategories] = useState([]);
+  const dispatch = useDispatch()
   const [visible, setVisible] = useState(false);
+  const categories = useSelector(store => store.category.categories);
 
   useEffect(() => {
-    const getCategoryList = async () => {
-      try {
-        const result = await getCategories()
-        setCategories(result?.data?.data)
-      } catch (error) { }
-    }
-    getCategoryList()
-  }, [])
+    dispatch(getCategories())
+  }, [dispatch])
 
   const onToggleNoti = () => setVisible(prev => !prev)
 
