@@ -1,6 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 import { Input, Button } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { position } from '@/utils/contanst'
+import { getUrlBadge } from '@/utils/photo-utils'
+import { setBadgeSelected } from '@/store/badge'
+
 import AlignBox from './AlignBox'
 import PhotoColorSelector from './PhotoColorSelector'
 import defaultImage from '../public/images/default_image.png'
@@ -12,6 +17,22 @@ const topBadges = Array(10).fill('').map((e, i) => ({ id: i }))
 const centerBadges = Array(2).fill('').map((e, i) => ({ id: i }))
 
 export default function PhotoCard({ isPhoto }) {
+  const dispatch = useDispatch()
+
+  const badgeCard = useSelector(store => store.badge.badgeCard);
+  const badgeSelected = useSelector(store => store.badge.badgeSelected);
+
+
+  const topLeftCard = badgeCard?.filter(e => e?.align === position?.TOP_LEFT)
+  const topRightCard = badgeCard?.filter(e => e?.align === position?.TOP_RIGHT)
+  const bottomLeftCard = badgeCard?.filter(e => e?.align === position?.BOTTOM_LEFT)
+  const bottomRightCard = badgeCard?.filter(e => e?.align === position?.BOTTOM_RIGHT)
+  const centerCard = badgeCard?.filter(e => e?.align === position?.CENTER)
+
+  const onSelectPhoto = (photo) => () => {
+    dispatch(setBadgeSelected(photo))
+  }
+
   return (
     <div className='rounded-lg border h-350 w-300 grid flex-col overflow-hidden relative grid-badge'>
       {isPhoto ? (
@@ -27,19 +48,56 @@ export default function PhotoCard({ isPhoto }) {
       )}
 
       <div className='top-list-badges z-10 flex flex-row overflow-hidden'>
-        {topBadges?.map(e => <div key={e.id} style={{ height: 70, width: 70, flexShrink: 0 }}><img src={p1.src} style={{ height: '100%', width: '100%', }} /></div>)}
+        {topLeftCard?.map(e => {
+          const isSelected = badgeSelected?.orderId === e?.orderId
+          return (
+            <div key={e.id} onClick={onSelectPhoto(e)} style={{ height: 70, width: 70, flexShrink: 0 }}
+              className={`border ${isSelected && 'border-blue'}`}>
+              <img src={getUrlBadge(e?.icon)} style={{ height: '100%', width: '100%', }} alt='badge' />
+            </div>)
+        })}
       </div>
+
       <div className='right-list-badges z-20 flex flex-col overflow-hidden'>
-        {topBadges?.map(e => <div key={e.id}><img src={p2.src} width={70} height={70} /></div>)}
+        {topRightCard?.map(e => {
+          const isSelected = badgeSelected?.orderId === e?.orderId
+          return (
+            <div key={e.id} onClick={onSelectPhoto(e)} className={`border ${isSelected && 'border-blue'}`}>
+              <img src={getUrlBadge(e?.icon)} width={70} height={70} alt='badge' />
+            </div>)
+        })}
       </div>
+
       <div className='bottom-list-badges z-30 flex flex-row-reverse overflow-hidden'>
-        {topBadges?.map(e => <div key={e.id} style={{ height: 70, width: 70, flexShrink: 0 }}><img src={p1.src} style={{ height: '100%', width: '100%', }} /></div>)}
+        {bottomLeftCard?.map(e => {
+          const isSelected = badgeSelected?.orderId === e?.orderId
+          return (
+            <div key={e.id} onClick={onSelectPhoto(e)} style={{ height: 70, width: 70, flexShrink: 0 }}
+              className={`border ${isSelected && 'border-blue'}`}>
+              <img src={getUrlBadge(e?.icon)} style={{ height: '100%', width: '100%', }} alt='badge' />
+            </div>)
+        })}
       </div>
+
       <div className='left-list-badges z-30 flex flex-col-reverse overflow-hidden'>
-        {topBadges?.map(e => <div key={e.id}><img src={p2.src} width={70} height={70} /></div>)}
+        {bottomRightCard?.map(e => {
+          const isSelected = badgeSelected?.orderId === e?.orderId
+          return (
+            <div key={e.id} onClick={onSelectPhoto(e)} className={`border ${isSelected && 'border-blue'}`}>
+              <img src={getUrlBadge(e?.icon)} width={70} height={70} alt='badge' />
+            </div>)
+        })}
       </div>
+
       <div className='center-list-badges z-30 flex flex-row overflow-hidden'>
-        {centerBadges?.map(e => <div key={e.id} style={{ height: 70, width: 70, flexShrink: 0 }}><img src={p2.src} width={70} height={70} /></div>)}
+        {centerCard?.map(e => {
+          const isSelected = badgeSelected?.orderId === e?.orderId
+          return (
+            <div key={e.id} style={{ height: 70, width: 70, flexShrink: 0 }}
+              className={`border ${isSelected && 'border-blue'}`}>
+              <img src={getUrlBadge(e?.icon)} width={70} height={70} alt='badge' />
+            </div>)
+        })}
       </div>
     </div>
   )

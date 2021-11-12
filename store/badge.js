@@ -4,6 +4,7 @@ import { REQUEST, SUCCESS, FAILURE } from '../utils/actionTypes';
 
 export const ACTION_TYPES = {
   SET_BADGE_SELECTED: 'badge/SET_BADGE_SELECTED',
+  SET_BADGE_TO_CARD: 'badge/SET_BADGE_TO_CARD',
   FETCH_BADGE: 'badge/FETCH_BADGE',
   FETCH_BADGE_DETAIL: 'badge/FETCH_BADGE_DETAIL',
   CREATE_BADGE: 'badge/CREATE_BADGE',
@@ -22,7 +23,8 @@ const initialState = {
   updating: false,
   totalItems: 0,
   updateSuccess: false,
-  badgeSelected: null
+  badgeSelected: null,
+  badgeCard: []
 };
 
 // Reducer
@@ -88,6 +90,11 @@ export default function badgeReducer(state = initialState, action) {
       return {
         ...state,
         badgeSelected: action.badgeSelected
+      };
+    case ACTION_TYPES.SET_BADGE_TO_CARD:
+      return {
+        ...state,
+        badgeCard: [...state.badgeCard, action.badgeSelected]
       };
     case ACTION_TYPES.CHANGE_FIELD:
       return {
@@ -158,6 +165,11 @@ export const changeField = (fieldName, fieldData) => ({
   type: ACTION_TYPES.CHANGE_FIELD,
   fieldName,
   fieldData
+});
+
+export const setBadgeToCard = (badge) => ({
+  type: ACTION_TYPES.SET_BADGE_TO_CARD,
+  badgeSelected: badge
 });
 
 export const setBadgeSelected = (badge) => ({

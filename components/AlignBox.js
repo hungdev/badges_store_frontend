@@ -1,20 +1,45 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import produce from 'immer';
+import { changeField } from '@/store/badge'
 
 export default function AlignBox() {
+  const dispatch = useDispatch()
+  const badgeSelected = useSelector(store => store.badge.badgeSelected);
+  const badgeCard = useSelector(store => store.badge.badgeCard);
+
   const alignList = [
-    { id: 'top-left', parentClass: '', childClass: 'self-start' },
-    { id: 'top-right', parentClass: 'flex-col', childClass: 'self-end' },
-    { id: 'bottom-left', parentClass: '', childClass: 'self-end' },
-    { id: 'bottom-right', parentClass: 'flex-col-reverse', childClass: 'self-end' },
+    { id: 'topLeft', parentClass: '', childClass: 'self-start' },
+    { id: 'topRight', parentClass: 'flex-col', childClass: 'self-end' },
+    { id: 'bottomLeft', parentClass: '', childClass: 'self-end' },
+    { id: 'bottomRight', parentClass: 'flex-col-reverse', childClass: 'self-end' },
     { id: 'center', parentClass: 'justify-center items-center', childClass: '' },
   ]
+
+  const onChangeAlign = (align) => () => {
+    const nextBadgeList = produce(badgeCard, draft => {
+      console.log('badgeCard', badgeCard)
+      console.log('badgeSelected', badgeSelected)
+      const ind = badgeCard?.findIndex(e => e?.orderId === badgeSelected?.orderId);
+      console.log('align', align)
+      console.log('ind', ind)
+      draft[ind].align = align
+    })
+    dispatch(changeField('badgeCard', nextBadgeList))
+  }
+
   return (
     <div className='flex flex-row justify-between w-full mt-5'>
-      {alignList?.map(e => (
-        <div key={e.id} className={`cursor-pointer bg-alignBg h-6 w-6 rounded-md p-1 flex mr-1 ${e.parentClass}`}>
-          <div className={`bg-alginDot h-2p5 w-2p5 rounded ${e.childClass}`}></div>
-        </div>
-      ))}
+      {alignList?.map(e => {
+        const isSelected = e?.id === badgeSelected?.align
+        return (
+          <div key={e.id}
+            onClick={onChangeAlign(e?.id)}
+            className={`cursor-pointer  h-6 w-6 rounded-md p-1 flex mr-1 ${e.parentClass} ${isSelected ? 'bg-pr' : 'bg-alignBg'}`}>
+            <div className={`bg-alginDot h-2p5 w-2p5 rounded ${e.childClass}`}></div>
+          </div>
+        )
+      })}
     </div>
   )
 }

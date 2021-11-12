@@ -41,6 +41,9 @@ module.exports = {
       }),
       fontSize: {
         '10': '10px'
+      },
+      borderColor: {
+        'blue': '#28ABFF'
       }
 
     },

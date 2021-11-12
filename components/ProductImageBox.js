@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Input } from 'antd';
 import { RightOutlined } from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
 import AlignBox from './AlignBox'
 import PhotoColorSelector from './PhotoColorSelector'
 import PhotoCard from './PhotoCard'
@@ -12,6 +13,9 @@ import p2 from '/public/discounts/discount_01_yellow_40.png'
 import Select from '@/components/Select'
 
 export default function ProductImageBox({ isPhoto = true, hideSelectColor }) {
+
+  const badgeSelected = useSelector(store => store.badge.badgeSelected);
+
   return (
     <div className='flex flex-auto justify-center items-center flex-col relative product-box'>
       <div className='flex items-center bg-white py-2 px-3 rounded-full mb-2 shadow text-redLight cursor-pointer'>
