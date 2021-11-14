@@ -11,21 +11,18 @@ export default function AlignBox() {
   const alignList = [
     { id: 'topLeft', parentClass: '', childClass: 'self-start' },
     { id: 'topRight', parentClass: 'flex-col', childClass: 'self-end' },
-    { id: 'bottomLeft', parentClass: '', childClass: 'self-end' },
-    { id: 'bottomRight', parentClass: 'flex-col-reverse', childClass: 'self-end' },
+    { id: 'bottomRight', parentClass: '', childClass: 'self-end' },
+    { id: 'bottomLeft', parentClass: 'flex-col-reverse', childClass: 'self-end' },
     { id: 'center', parentClass: 'justify-center items-center', childClass: '' },
   ]
 
   const onChangeAlign = (align) => () => {
     const nextBadgeList = produce(badgeCard, draft => {
-      console.log('badgeCard', badgeCard)
-      console.log('badgeSelected', badgeSelected)
       const ind = badgeCard?.findIndex(e => e?.orderId === badgeSelected?.orderId);
-      console.log('align', align)
-      console.log('ind', ind)
       draft[ind].align = align
     })
     dispatch(changeField('badgeCard', nextBadgeList))
+    dispatch(changeField('badgeSelected', { ...badgeSelected, align }))
   }
 
   return (
@@ -35,7 +32,7 @@ export default function AlignBox() {
         return (
           <div key={e.id}
             onClick={onChangeAlign(e?.id)}
-            className={`cursor-pointer  h-6 w-6 rounded-md p-1 flex mr-1 ${e.parentClass} ${isSelected ? 'bg-pr' : 'bg-alignBg'}`}>
+            className={`cursor-pointer h-6 w-6 rounded-md p-1 flex mr-1 ${e.parentClass} ${isSelected ? 'bg-pr' : 'bg-alignBg'}`}>
             <div className={`bg-alginDot h-2p5 w-2p5 rounded ${e.childClass}`}></div>
           </div>
         )

@@ -93,7 +93,7 @@ export default function PhotoCard({ isPhoto }) {
         {centerCard?.map(e => {
           const isSelected = badgeSelected?.orderId === e?.orderId
           return (
-            <div key={e.id} style={{ height: 70, width: 70, flexShrink: 0 }}
+            <div key={e.id} onClick={onSelectPhoto(e)} style={{ height: 70, width: 70, flexShrink: 0 }}
               className={`border ${isSelected && 'border-blue'}`}>
               <img src={getUrlBadge(e?.icon)} width={70} height={70} alt='badge' />
             </div>)

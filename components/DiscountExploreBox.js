@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Image from 'next/image'
-import { getBadges, setBadgeToCard } from '@/store/badge'
+import { getBadges, setBadgeToCard, setBadgeSelected } from '@/store/badge'
 import { useDispatch, useSelector } from 'react-redux';
 import { getUrlBadge } from '@/utils/photo-utils'
 import { nanoid } from 'nanoid';
@@ -19,7 +19,9 @@ export default function DiscountExploreBox() {
 
 
   const onSelectBadge = (e) => () => {
-    dispatch(setBadgeToCard({ ...e, orderId: nanoid(), align: position.TOP_LEFT }))
+    const orderId = nanoid()
+    dispatch(setBadgeToCard({ ...e, orderId, align: position.TOP_LEFT }))
+    badgeCard?.length === 0 && dispatch(setBadgeSelected({ ...e, orderId, align: position.TOP_LEFT }))
   }
 
   return (
