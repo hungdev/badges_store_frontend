@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Input } from 'antd';
 import { RightOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
+import { getBadges, setBadgeToCard, setBadgeSelected, changeField } from '@/store/badge'
 import AlignBox from './AlignBox'
 import PhotoColorSelector from './PhotoColorSelector'
 import PhotoCard from './PhotoCard'
@@ -11,10 +12,19 @@ import chatIcon from '../public/images/chat_bold.png'
 import p1 from '/public/discounts/discount_01_black_10.png'
 import p2 from '/public/discounts/discount_01_yellow_40.png'
 import Select from '@/components/Select'
+import produce from 'immer';
 
 export default function ProductImageBox({ isPhoto = true, hideSelectColor }) {
+  const dispatch = useDispatch()
 
   const badgeSelected = useSelector(store => store.badge.badgeSelected);
+  const badgeCard = useSelector(store => store.badge.badgeCard);
+
+  const onRemoveBadge = () => {
+    const nextBadgeList = badgeCard?.filter(e => e?.orderId !== badgeSelected?.orderId)
+    dispatch(changeField('badgeCard', nextBadgeList))
+    dispatch(setBadgeSelected(nextBadgeList?.[0]))
+  }
 
   return (
     <div className='flex flex-auto justify-center items-center flex-col relative product-box'>
@@ -49,7 +59,7 @@ export default function ProductImageBox({ isPhoto = true, hideSelectColor }) {
             <Select />
           </div>
         </div>
-        <div div className='text-base text-delete mt-6 font-medium text-center cursor-pointer' > Remove badge</div >
+        <div div className='text-base text-delete mt-6 font-medium text-center cursor-pointer' onClick={onRemoveBadge}> Remove badge</div >
       </div >
       <div className='absolute bottom-0 right-0 cursor-pointer'><Image src={chatIcon} alt="Explore" width={70} height={70} layout="fixed" /></div>
     </div >

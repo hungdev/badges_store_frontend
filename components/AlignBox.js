@@ -27,7 +27,7 @@ export default function AlignBox() {
 
   return (
     <div className='flex flex-row justify-between w-full mt-5'>
-      {alignList?.map(e => {
+      {badgeSelected && alignList?.map(e => {
         const isSelected = e?.id === badgeSelected?.align
         return (
           <div key={e.id}

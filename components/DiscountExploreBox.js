@@ -21,7 +21,7 @@ export default function DiscountExploreBox() {
   const onSelectBadge = (e) => () => {
     const orderId = nanoid()
     dispatch(setBadgeToCard({ ...e, orderId, align: position.TOP_LEFT }))
-    badgeCard?.length === 0 && dispatch(setBadgeSelected({ ...e, orderId, align: position.TOP_LEFT }))
+    dispatch(setBadgeSelected({ ...e, orderId, align: position.TOP_LEFT }))
   }
 
   return (
